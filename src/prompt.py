@@ -1,4 +1,5 @@
 
+from langchain_core.prompts import ChatPromptTemplate
 #chat model has two input system & User prompt
 
 system_prompt = (
