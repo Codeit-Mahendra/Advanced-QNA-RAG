@@ -1,5 +1,3 @@
-
-
 from fastapi import FastAPI, Request, Form
 from fastapi.responses import HTMLResponse, JSONResponse, FileResponse
 from fastapi.staticfiles import StaticFiles
@@ -16,28 +14,32 @@ import os
 # Load environment variables
 load_dotenv()
 
+# Get API keys
 PINECONE_API_KEY = os.getenv("PINECONE_API_KEY")
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 
+# Set them in environment (optional, if needed by other libraries)
 os.environ["PINECONE_API_KEY"] = PINECONE_API_KEY
 os.environ["GROQ_API_KEY"] = GROQ_API_KEY
 
-# Initialize embeddings and vector store
 embeddings = download_embeddings()
 
 index_name = "advanced-qna-rag"
+# Embed each chunk and upsert the embeddings into your Pinecone index.
 docsearch = PineconeVectorStore.from_existing_index(
     index_name=index_name,
     embedding=embeddings
 )
 
-retriever = docsearch.as_retriever(search_type="similarity", search_kwargs={"k": 7})
+retriever = docsearch.as_retriever(search_type="similarity", search_kwargs={"k": 3})
 
+# Update your model to a working one
 chatModel = ChatGroq(
-    model="groq/compound",  # Using a commonly available Groq model
-    temperature=0.2,
+    model="groq/compound",  # Working model
+    temperature=0.1,
     groq_api_key=os.environ.get("GROQ_API_KEY")
 )
+print(f"Using model: {chatModel.model_name}")
 
 prompt = ChatPromptTemplate.from_messages(
     [
@@ -50,35 +52,30 @@ question_answer_chain = create_stuff_documents_chain(chatModel, prompt)
 rag_chain = create_retrieval_chain(retriever, question_answer_chain)
 
 # Initialize FastAPI app
-app = FastAPI(title="advanced-qna-rag", debug=True)
+app = FastAPI()
 
-# Mount static files
+# Mount static files only (since chat.html is in static folder)
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
-# Serve the static HTML file directly
+# Serve the chat.html file directly from static folder
 @app.get("/", response_class=HTMLResponse)
 async def index():
-    return FileResponse("static/c.html")
+    return FileResponse("static/chat.html")
 
 @app.post("/get")
 async def chat(msg: str = Form(...)):
     print(f"Input: {msg}")
     response = rag_chain.invoke({"input": msg})
-    print(f"Response: {response['answer']}")
-    return JSONResponse(content={"answer": response["answer"]})
-
-# Alternative JSON endpoint
-@app.post("/api/chat")
-async def chat_api(request: dict):
-    msg = request.get("msg", "")
-    if not msg:
-        return JSONResponse(content={"error": "No message provided"}, status_code=400)
+    answer = response["answer"]
     
-    print(f"Input: {msg}")
-    response = rag_chain.invoke({"input": msg})
-    print(f"Response: {response['answer']}")
-    return {"answer": response["answer"]}
+    # Clean the response - fix common formatting issues
+    cleaned_answer = answer.replace('@', '-')  # Replace @ with -
+    cleaned_answer = cleaned_answer.replace('\u2013', '-')  # Replace en-dash with regular dash
+    cleaned_answer = cleaned_answer.replace('\u2014', '-')  # Replace em-dash with regular dash
+    
+    print(f"Response: {cleaned_answer}")
+    return JSONResponse(content={"answer": cleaned_answer})
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8080)
+    uvicorn.run(app, host="0.0.0.0", port=8080, debug=True)

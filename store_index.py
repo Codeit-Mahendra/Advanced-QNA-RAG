@@ -25,7 +25,9 @@ texts_chunk = text_split(minimal_docs)
 embedding = download_embeddings()
 
 pinecone_api_key = PINECONE_API_KEY
-pc = Pinecone(api_key=pinecone_api_key, environment="us-east-1")
+pc = Pinecone(api_key=pinecone_api_key)
+
+####--------------------------------------------------------------
 
 index_name = "advanced-qna-rag"
 
@@ -47,6 +49,8 @@ else:
 # Connect to the index
 index = pc.Index(index_name)
 print(f"Connected to index: {index_name}")
+
+####----------------------------------------------------------------
 
 # Assuming texts_chunk and embedding are defined from earlier cells
 docsearch = PineconeVectorStore.from_documents(
