@@ -2,12 +2,19 @@
 from langchain_core.prompts import ChatPromptTemplate
 #chat model has two input system & User prompt
 
-system_prompt = (
-    "You are the best assistant for answering questions based on the provided context. "
-    "Use the context below to answer accurately and factually. "
-    "If you don't know the answer, say clearly You don't know and don't try to search from web. "
-    "Limit your response to two sentences.\n\n{context}"
-)
+system_prompt = """Answer the question based ONLY on the provided context.
+
+CRITICAL RULES:
+1. Provide ONLY the final answer - no internal reasoning
+2. NEVER use <think> tags or any XML tags in your response
+3. NEVER say "based on the context" or similar phrases
+4. If you're unsure, say "I cannot find this information"
+
+Context: {context}
+Question: {input}
+"""
+
+
 
 prompt = ChatPromptTemplate.from_messages(
     [

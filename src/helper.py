@@ -51,7 +51,7 @@ print("Minimal document loaded successfully!")
 def text_split(minimal_docs):
     text_splitter = RecursiveCharacterTextSplitter(  # defined to split text into smaller chunks
         chunk_size=300,
-        chunk_overlap=50,
+        chunk_overlap=40,
         separators=["\n\n", "\n", ". ", "! ", "? ", "; ", ", ", " "],
         length_function=len
     )
@@ -61,7 +61,8 @@ print("Text splitting successful!")
 
 def download_embeddings():
     embeddings = HuggingFaceEmbeddings(
-        model_name="sentence-transformers/all-MiniLM-L6-v2"
+        # model_name="sentence-transformers/all-MiniLM-L6-v2"
+        model_name="sentence-transformers/all-mpnet-base-v2"
     )
     return embeddings
 

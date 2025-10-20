@@ -38,7 +38,8 @@ if index_name not in existing_indexes:
     print(f"Creating index: {index_name}")
     pc.create_index(
         name=index_name,
-        dimension=384,  # Dimension of the embeddings
+        dimension=768,  # Dimension of the embeddings
+        # dimension=384,  # Dimension of the embeddings        
         metric="cosine",  # Cosine similarity
         spec=ServerlessSpec(cloud="aws", region="us-east-1")
     )

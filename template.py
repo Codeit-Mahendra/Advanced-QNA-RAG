@@ -24,3 +24,4 @@ for file in files:
         pass  # Creates an empty file
 
 print("Directory and files created successfully!")
+
