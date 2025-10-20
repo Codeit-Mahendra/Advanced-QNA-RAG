@@ -5,7 +5,8 @@ from langchain_core.documents import Document
 from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_community.vectorstores import Pinecone
 from pinecone import Pinecone, ServerlessSpec
-from langchain_pinecone import PineconeVectorStore
+# Remove problematic import and use alternative
+from langchain.vectorstores import Pinecone as PineconeVS
 from langchain.chains import create_retrieval_chain
 from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain_core.prompts import ChatPromptTemplate
