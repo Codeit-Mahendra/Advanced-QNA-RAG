@@ -2,20 +2,19 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
-# Install system dependencies
-RUN apt-get update && apt-get install -y \
-    gcc \
-    g++ \
-    && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y gcc g++
 
-# Copy requirements first
 COPY requirements.txt .
 
-# Install Python dependencies
 RUN pip install --upgrade pip
-RUN pip install -r requirements.txt
 
-# Copy application code
+# Install packages one by one to avoid dependency conflicts
+RUN pip install fastapi uvicorn python-multipart
+RUN pip install langchain langchain-community langchain-core
+RUN pip install langchain-groq langchain-pinecone
+RUN pip install pinecone-client sentence-transformers
+RUN pip install groq pypdf python-dotenv pydantic requests numpy
+
 COPY . .
 
 EXPOSE 8080
