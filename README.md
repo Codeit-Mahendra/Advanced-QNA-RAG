@@ -4,9 +4,45 @@ A sophisticated Retrieval-Augmented Generation (RAG) system built for question-a
 
 ![RAG System Interface](image.png)
 
+## 📁 Project Structure
+
+```
+Advanced-QNA-RAG/
+├── .env                          # Environment variables
+├── .gitignore                    # Git ignore rules
+├── LICENSE                       # Project license
+├── README.md                     # Project documentation
+├── app.py                        # Main FastAPI application
+├── requirements.txt              # Python dependencies
+├── setup.py                      # Package configuration
+├── render.yaml                   # Deployment configuration
+├── image.png                     # Project screenshot
+├── store_index.py                # Script to store embeddings
+├── template.py                   # Template utilities
+├── folder_structure.py           # Directory structure generator
+├── __pycache__/                  # Python cache
+│   └── app.cpython-310.pyc
+├── data/                         # Data directory
+│   └── Three Thousand Stitches by Sudha Murthy.pdf
+├── research/                     # Research and development
+│   └── trials.ipynb             # Jupyter notebook experiments
+├── src/                         # Source code
+│   ├── __init__.py
+│   ├── helper.py                # Embedding and utility functions
+│   ├── prompt.py                # System prompts and templates
+│   └── __pycache__/             # Python cache
+├── static/                      # Static files
+│   └── chat.html               # Web interface
+└── advanced_qna_rag.egg-info/  # Package metadata
+    ├── PKG-INFO
+    ├── SOURCES.txt
+    ├── dependency_links.txt
+    └── top_level.txt
+```
+
 ## 📖 Project Overview
 
-This project implements an advanced RAG pipeline that can answer detailed questions about textual content. The current implementation is configured to analyze "The Blue Umbrella" story, providing accurate, context-aware responses to user queries.
+This project implements an advanced RAG pipeline that can answer detailed questions about textual content. The current implementation is configured to analyze literary works, providing accurate, context-aware responses to user queries.
 
 ## 🚀 Features
 
@@ -16,6 +52,7 @@ This project implements an advanced RAG pipeline that can answer detailed questi
 - **Clean UI**: Simple and intuitive chat interface
 - **Context-Aware Responses**: Provides answers based strictly on provided context
 - **Response Cleaning**: Advanced post-processing to remove internal model reasoning
+- **Research Notebooks**: Comprehensive experimentation and testing
 
 ## 🛠️ Technology Stack
 
@@ -25,6 +62,7 @@ This project implements an advanced RAG pipeline that can answer detailed questi
 - **Embeddings**: Sentence Transformers
 - **Frontend**: HTML, JavaScript
 - **Environment**: dotenv for configuration
+- **Deployment**: Render configuration included
 
 ## 📋 Setup Instructions
 
@@ -56,7 +94,7 @@ This project implements an advanced RAG pipeline that can answer detailed questi
 
 4. **Configure Pinecone Index**
    - Ensure you have a Pinecone index named `advanced-qna-rag`
-   - The system will automatically load and use this index
+   - Use `store_index.py` to populate the index with your documents
 
 5. **Run the application**
    ```bash
@@ -85,55 +123,46 @@ This project implements an advanced RAG pipeline that can answer detailed questi
 
 ### General Questions
 - **Who is the author of this book?**
-- **What is the overall summary of the book?**
 
-## 🔧 Technical Architecture
+### Trick Questions
+- **Who is Sharukh Khan?**
 
-### Components
+## 🔧 Key Components
 
-1. **Vector Store**: Pinecone for efficient similarity search
-2. **Embeddings**: Sentence transformers for text representation
-3. **LLM**: Groq with Qwen3-32B model for generation
-4. **Retrieval Chain**: LangChain for orchestration
-5. **API Layer**: FastAPI for web interface
-6. **Response Cleaning**: Custom post-processing pipeline
+### Core Application Files
 
-### Key Features
+- **`app.py`** - Main FastAPI application with RAG chain implementation
+- **`store_index.py`** - Script for storing document embeddings in Pinecone
+- **`src/helper.py`** - Embedding download and utility functions
+- **`src/prompt.py`** - System prompts and conversation templates
 
-- **Semantic Search**: k=5 similarity search with cosine similarity
-- **Temperature Control**: 0.3 for consistent responses
-- **Response Cleaning**: Removes internal model reasoning tags
-- **Error Handling**: Robust error management throughout the pipeline
+### Configuration Files
 
-## 📁 Project Structure
+- **`requirements.txt`** - Python package dependencies
+- **`render.yaml`** - Deployment configuration for Render
+- **`setup.py`** - Package setup and distribution configuration
 
-```
-Advanced-QNA-RAG/
-├── app.py                 # Main FastAPI application
-├── src/
-│   ├── helper.py         # Embedding and utility functions
-│   └── prompt.py         # System prompts and templates
-├── static/
-│   └── chat.html         # Web interface
-├── requirements.txt      # Python dependencies
-└── .env                 # Environment variables
-```
+### Research & Development
+
+- **`research/trials.ipynb`** - Jupyter notebook for experimentation
+- **`data/`** - Directory containing source documents (PDFs)
 
 ## 🎮 Usage
 
-1. Start the application using `python app.py`
-2. Open the web interface in your browser
-3. Type your question in the input field
-4. Receive context-aware answers based on the stored knowledge
+1. **Start the application** using `python app.py`
+2. **Open the web interface** at `http://localhost:8080`
+3. **Type your question** in the input field
+4. **Receive context-aware answers** based on the stored knowledge
 
 ## 🔍 How It Works
 
-1. **Question Input**: User submits a question through the web interface
-2. **Semantic Search**: System finds the most relevant context chunks from Pinecone
-3. **Context Augmentation**: Relevant context is combined with the question
-4. **LLM Generation**: Groq model generates an answer based on the augmented prompt
-5. **Response Cleaning**: Internal reasoning tags are removed from the response
-6. **Output**: Clean, direct answer is displayed to the user
+1. **Document Processing**: PDFs are chunked and embedded using sentence transformers
+2. **Vector Storage**: Embeddings are stored in Pinecone vector database
+3. **Query Processing**: User questions are converted to embeddings
+4. **Semantic Search**: Similar chunks are retrieved from Pinecone (k=5)
+5. **Context Augmentation**: Retrieved context is combined with the question
+6. **LLM Generation**: Groq model generates answers based on augmented prompt
+7. **Response Cleaning**: Internal reasoning tags are removed before display
 
 ## ⚙️ Configuration
 
@@ -147,13 +176,24 @@ Advanced-QNA-RAG/
 - **Index**: `advanced-qna-rag`
 - **Embeddings**: Sentence transformers
 
+## 🚀 Deployment
+
+The project includes `render.yaml` for easy deployment on Render.com. Update the environment variables in your Render dashboard:
+
+- `PINECONE_API_KEY`
+- `GROQ_API_KEY`
+
 ## 🤝 Contributing
 
-Contributions are welcome! Please feel free to submit pull requests or open issues for bugs and feature requests.
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## 🙏 Acknowledgments
 
@@ -164,9 +204,4 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ---
 
-**Note**: Make sure to set up your API keys in the `.env` file before running the application. The system is currently configured for "The Blue Umbrella" story but can be adapted for other texts by updating the Pinecone index.
-
-
-
-
-
+**Note**: Make sure to set up your API keys in the `.env` file before running the application. The system can be adapted for different texts by updating the Pinecone index with new documents.
