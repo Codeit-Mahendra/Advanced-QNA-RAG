@@ -4,6 +4,30 @@ A sophisticated Retrieval-Augmented Generation (RAG) system built for question-a
 
 ![RAG System Interface](image.png)
 
+## 🎯 Sample Questions to Test
+
+### Character-Based Questions
+- **What did Binya exchange to get the blue umbrella?**
+- **Who is Binya?**
+- **Who is Bijju?**
+- **Who gives Binya that pendant?**
+
+### Plot and Setting Questions
+- **Tell me about Ram's shop?**
+- **How did the wind cause Binya's umbrella to end up in danger?**
+- **Where did this Silver pendant come from?**
+
+### Analytical Questions
+- **Why did Ram Bharosa make an offer to buy the umbrella, and what does his final reaction suggest about his feelings towards it?**
+- **According to Ram Bharosa, what is the umbrella's primary purpose, and what does Binya actually value it for?**
+
+### General Questions
+- **Who is the author of this book?**
+
+### Trick Questions
+- **Who is Sharukh Khan?**
+
+
 ## 📁 Project Structure
 
 ```
@@ -60,7 +84,7 @@ This project implements an advanced RAG pipeline that can answer detailed questi
 - **Vector Database**: Pinecone
 - **LLM**: Groq API (Qwen3-32B model)
 - **Embeddings**: Sentence Transformers
-- **Frontend**: HTML, JavaScript
+- **Frontend**: HTML
 - **Environment**: dotenv for configuration
 - **Deployment**: Render configuration included
 
@@ -68,7 +92,7 @@ This project implements an advanced RAG pipeline that can answer detailed questi
 
 ### Prerequisites
 
-- Python 3.8+
+- Python 3.10+
 - Pinecone API key
 - Groq API key
 
@@ -104,28 +128,6 @@ This project implements an advanced RAG pipeline that can answer detailed questi
 6. **Access the application**
    Open your browser and navigate to `http://localhost:8080`
 
-## 🎯 Sample Questions to Test
-
-### Character-Based Questions
-- **What did Binya exchange to get the blue umbrella?**
-- **Who is Binya?**
-- **Who is Bijju?**
-- **Who gives Binya that pendant?**
-
-### Plot and Setting Questions
-- **Tell me about Ram's shop?**
-- **How did the wind cause Binya's umbrella to end up in danger?**
-- **Where did this Silver pendant come from?**
-
-### Analytical Questions
-- **Why did Ram Bharosa make an offer to buy the umbrella, and what does his final reaction suggest about his feelings towards it?**
-- **According to Ram Bharosa, what is the umbrella's primary purpose, and what does Binya actually value it for?**
-
-### General Questions
-- **Who is the author of this book?**
-
-### Trick Questions
-- **Who is Sharukh Khan?**
 
 ## 🔧 Key Components
 
