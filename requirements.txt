@@ -1,40 +1,33 @@
 
-fastapi==0.119.0
-uvicorn[standard]==0.37.0
-python-multipart==0.0.20
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+python-multipart==0.0.6
 
-# LangChain core (from your env)
-langchain==0.2.16
-langchain-community==0.2.16
-langchain-core==0.1.53
-langchain-groq==0.1.0
-langchain-pinecone==0.1.1
+# Core LangChain (latest compatible versions)
+langchain
+langchain-community
+langchain-core
+langchain-groq
+langchain-pinecone
 
 # Pinecone
-pinecone-client==3.2.2
+pinecone-client
 
 # Embeddings
-sentence-transformers==5.1.1
+sentence-transformers
 
 # Groq
-groq==0.32.0
+groq
 
 # PDF processing
-pypdf==6.1.0
+pypdf
 
 # Environment
-python-dotenv==1.1.1
+python-dotenv
 
-# Core dependencies
-pydantic==2.11.9
-pydantic-core==2.33.2
-typing-extensions==4.15.0
-requests==2.32.5
-numpy==1.26.4
-tiktoken==0.11.0
-
-# Hugging Face (for sentence-transformers)
-transformers==4.56.2
-tokenizers==0.22.1
-huggingface-hub==0.35.1
--e .
+# Core utilities
+pydantic
+typing-extensions
+requests
+numpy
+tiktoken
