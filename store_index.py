@@ -32,7 +32,7 @@ os.environ["GROQ_API_KEY"] = GROQ_API_KEY
 
 # 1. LOAD PDF FILES
 # Loads and extracts text content from PDF files in the specified directory
-extracted_data = load_pdf_files("D:\Advanced-QNA-RAG\data")
+extracted_data = load_pdf_files("data")
 # Output: Raw text extracted from all PDF documents
 
 # 2. FILTER DOCUMENTS
