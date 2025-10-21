@@ -84,7 +84,6 @@ def filter_to_minimal_docs(docs: List[Document]) -> List[Document]:
         )
     return minimal_docs
 
-print("Minimal document loaded successfully!")
 
 # =============================================================================
 # TEXT PROCESSING FUNCTIONS
@@ -127,7 +126,6 @@ def text_split(minimal_docs):
     texts_chunk = text_splitter.split_documents(minimal_docs)
     return texts_chunk
 
-print("Text splitting successful!")
 
 # =============================================================================
 # EMBEDDING FUNCTIONS
@@ -159,5 +157,3 @@ def download_embeddings():
     return embeddings
 
 # Test the embedding function
-embeddings = download_embeddings()
-print("Embeddings loaded successfully!")
