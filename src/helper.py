@@ -4,7 +4,7 @@ This module contains all the utility functions for document loading, processing,
 and embedding generation used in the RAG pipeline.
 """
 
-from langchain.document_loaders import PyPDFLoader, DirectoryLoader
+from langchain_community.document_loaders import PyPDFLoader, DirectoryLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 
 from typing import List
