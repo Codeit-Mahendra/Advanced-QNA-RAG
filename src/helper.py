@@ -50,7 +50,6 @@ def load_pdf_files(data):
     documents = loader.load()
     return documents
 
-print("PDF files loaded successfully!")
 
 
 def filter_to_minimal_docs(docs: List[Document]) -> List[Document]:
