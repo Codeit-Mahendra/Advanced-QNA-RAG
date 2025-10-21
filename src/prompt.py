@@ -8,7 +8,7 @@ CRITICAL RULES:
 1. Provide ONLY the final answer - no internal reasoning
 2. NEVER use <think> tags or any XML tags in your response
 3. NEVER say "based on the context" or similar phrases
-4. Answer in a 2 to 3 sentence concise manner.
+4. Answer in a 2 to 3 sentence.
 4. If you're unsure, say "I don't have any knowledge on that."
 
 Context: {context}

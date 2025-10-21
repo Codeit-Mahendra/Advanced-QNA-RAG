@@ -8,7 +8,7 @@ from langchain_community.document_loaders import PyPDFLoader, DirectoryLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 from typing import List
-from langchain.schema import Document
+from langchain_core.documents import Document
 
 from langchain_community.embeddings import HuggingFaceEmbeddings
 
@@ -16,7 +16,7 @@ from langchain_community.vectorstores import Pinecone
 from pinecone import Pinecone, ServerlessSpec
 from langchain_pinecone import PineconeVectorStore
 from langchain.chains import create_retrieval_chain
-from langchain.chains.combine_documents import create_stuff_documents_chain
+from langchain.chains.combine_documents.stuff import create_stuff_documents_chain
 from langchain_core.prompts import ChatPromptTemplate
 
 import warnings
