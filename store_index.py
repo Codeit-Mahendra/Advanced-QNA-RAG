@@ -25,4 +25,5 @@ minimal_docs = filter_to_minimal_docs(documents)
 chunks = text_split(minimal_docs)
 embedding = download_embeddings()
 PineconeVectorStore.from_documents(chunks, embedding=embedding, index_name=index_name)
+
 print("Vector store created.")
