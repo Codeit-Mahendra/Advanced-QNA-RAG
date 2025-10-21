@@ -10,8 +10,6 @@ from src.helper import load_pdf_files, filter_to_minimal_docs, text_split, downl
 from pinecone import Pinecone, ServerlessSpec
 from langchain_pinecone import PineconeVectorStore
 
-import warnings
-warnings.filterwarnings("ignore")  # Suppress warnings for cleaner output
 
 # =============================================================================
 # ENVIRONMENT CONFIGURATION
