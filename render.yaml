@@ -1,11 +1,12 @@
 services:
   - type: web
     name: advanced-qna-rag
-    env: docker
+    env: python
     plan: free
-    dockerfilePath: ./Dockerfile
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app:app --host 0.0.0.0 --port $PORT
     envVars:
-      - key: PINECONE_API_KEY
-        sync: false
       - key: GROQ_API_KEY
+        sync: false
+      - key: PINECONE_API_KEY
         sync: false
