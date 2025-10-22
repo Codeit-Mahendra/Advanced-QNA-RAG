@@ -10,7 +10,6 @@ A sophisticated Retrieval-Augmented Generation (RAG) system built for question-a
 - **What did Binya exchange to get the blue umbrella?**
 - **Who is Binya?**
 - **Who is Bijju?**
-- **Who gives Binya that pendant?**
 
 ### Plot and Setting Questions
 - **Tell me about Ram's shop?**
@@ -23,6 +22,7 @@ A sophisticated Retrieval-Augmented Generation (RAG) system built for question-a
 
 ### General Questions
 - **Who is the author of this book?**
+- **Who gives Binya that pendant?** But Tricky too
 
 ### Trick Questions
 - **Who is Sharukh Khan?**
@@ -39,7 +39,7 @@ Advanced-QNA-RAG/
 ├── app.py                        # Main FastAPI application
 ├── requirements.txt              # Python dependencies
 ├── setup.py                      # Package configuration
-├── render.yaml                   # Deployment configuration
+├── render.yaml                   # Deployment configuration  #for Render based Deployment
 ├── image.png                     # Project screenshot
 ├── store_index.py                # Script to store embeddings
 ├── template.py                   # Template utilities
